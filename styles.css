@@ -1,0 +1,304 @@
+/* =====================================================
+   NARUTOsidequest — styles.css
+   Main app styles
+   Theme: dark black + orange accent
+   Fonts: Rajdhani (brand) + Share Tech Mono (body)
+   ===================================================== */
+ 
+/* --- CSS Variables: change these to retheme the whole app --- */
+:root {
+    --bg:          #0d0d0d;
+    --border:      #1e1e1e;
+    --orange:      #ff6b1a;
+    --orange-dim:  #b84a0e;
+    --orange-glow: rgba(255, 107, 26, 0.15);
+    --white:       #f0ede8;
+    --muted:       #4a4a4a;
+    --green:       #39d98a;
+    --red:         #ff4545;
+  }
+   
+  /* --- Reset --- */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+   
+  /* --- Base --- */
+  body {
+    font-family: 'Share Tech Mono', monospace;
+    background: var(--bg);
+    color: var(--white);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 1rem 3rem;
+  }
+   
+  /* =====================================================
+     TOP BAR
+     ===================================================== */
+  .topbar {
+    width: 100%;
+    max-width: 720px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 0 0.9rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1.3rem;
+  }
+   
+  /* Brand name: "NARUTO" in orange, "sidequest" in white */
+  .brand-name {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 1.75rem;
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
+   
+  .brand-name .n { color: var(--orange); }
+  .brand-name .s { color: var(--white); }
+   
+  .brand-sub {
+    font-size: 0.58rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 3px;
+  }
+   
+  /* Navigation link (top right) */
+  .nav-link {
+    font-size: 0.62rem;
+    color: var(--muted);
+    text-decoration: none;
+    border: 1px solid var(--border);
+    padding: 7px 14px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.2s;
+  }
+   
+  .nav-link:hover {
+    border-color: var(--orange);
+    color: var(--orange);
+  }
+   
+  /* =====================================================
+     ERROR BANNER
+     ===================================================== */
+  .error {
+    width: 100%;
+    max-width: 720px;
+    background: var(--red);
+    color: #fff;
+    padding: 0.6rem 1rem;
+    font-size: 0.75rem;
+    margin-bottom: 8px;
+  }
+   
+  .hidden { display: none; }
+   
+  /* =====================================================
+     CONFIDENCE BAR
+     Shows ML model prediction probability (0–100%)
+     ===================================================== */
+  .conf-row {
+    width: 100%;
+    max-width: 720px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+   
+  .conf-label {
+    font-size: 0.58rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+   
+  .conf-track {
+    flex: 1;
+    height: 3px;
+    background: var(--border);
+    overflow: hidden;
+  }
+   
+  .conf-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--orange);
+    transition: width 0.07s linear;
+  }
+   
+  .conf-val {
+    font-size: 0.72rem;
+    color: var(--orange);
+    min-width: 50px;
+    text-align: right;
+  }
+   
+  /* =====================================================
+     STATUS LINE
+     Shows: initializing → model ready → CLONE TRIGGERED
+     ===================================================== */
+  .status-row {
+    width: 100%;
+    max-width: 720px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+   
+  /* Coloured dot indicator */
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--muted);
+    flex-shrink: 0;
+  }
+   
+  .dot.ready {
+    background: var(--green);
+    box-shadow: 0 0 6px var(--green);
+  }
+   
+  .dot.active {
+    background: var(--orange);
+    box-shadow: 0 0 8px var(--orange);
+    animation: blink 0.5s ease infinite alternate;
+  }
+   
+  @keyframes blink {
+    to { opacity: 0.2; }
+  }
+   
+  .status-msg {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+   
+  .status-msg.ready  { color: var(--green); }
+  .status-msg.active { color: var(--orange); }
+   
+  /* =====================================================
+     VIDEO / CANVAS WRAPPER
+     ===================================================== */
+  .video-wrap {
+    width: 100%;
+    max-width: 720px;
+    position: relative;
+    background: #000;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+   
+  /* Orange corner bracket accents */
+  .corner {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    z-index: 5;
+    pointer-events: none;
+  }
+   
+  .corner.tl { top: 0;    left: 0;  border-top:    2px solid var(--orange); border-left:   2px solid var(--orange); }
+  .corner.tr { top: 0;    right: 0; border-top:    2px solid var(--orange); border-right:  2px solid var(--orange); }
+  .corner.bl { bottom: 0; left: 0;  border-bottom: 2px solid var(--orange); border-left:   2px solid var(--orange); }
+  .corner.br { bottom: 0; right: 0; border-bottom: 2px solid var(--orange); border-right:  2px solid var(--orange); }
+   
+  /* Raw webcam video — hidden (we draw to canvas instead) */
+  #video { display: none; }
+   
+  /* Canvas is what the user actually sees */
+  #canvas {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+   
+  /* =====================================================
+     OVERLAY HAND SIGN BUTTON
+     Sits bottom-center of the video, swaps image on trigger
+     ===================================================== */
+  .overlay-btn {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 10;
+    transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+   
+  .overlay-btn img {
+    width: 96px;
+    height: auto;
+    transform: scaleX(-1); /* mirror to match webcam */
+    filter: drop-shadow(0 0 10px rgba(255, 107, 26, 0.55));
+  }
+   
+  /* Pop animation when clones trigger */
+  .overlay-btn.pop {
+    transform: translateX(-50%) scale(1.4);
+  }
+   
+  /* =====================================================
+     CONTROLS ROW (Reset button)
+     ===================================================== */
+  .controls {
+    width: 100%;
+    max-width: 720px;
+    margin-top: 10px;
+  }
+   
+  .reset-btn {
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+   
+  .reset-btn:hover {
+    border-color: var(--orange-dim);
+    color: var(--orange);
+    background: var(--orange-glow);
+  }
+   
+  /* =====================================================
+     FOOTER
+     ===================================================== */
+  footer {
+    width: 100%;
+    max-width: 720px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.55rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-top: 1px solid var(--border);
+    padding-top: 0.8rem;
+    margin-top: 1.8rem;
+  }

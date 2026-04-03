@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NARUTOsidequest — Shadow Clone Jutsu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+ 
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div>
+      <div class="brand-name">
+        <span class="n">NARUTO</span><span class="s">sidequest</span>
+      </div>
+      <div class="brand-sub">Shadow Clone Jutsu · Real-time AR</div>
+    </div>
+    <a class="nav-link" href="trainer.html">Open Trainer →</a>
+  </div>
+ 
+  <!-- ERROR BANNER -->
+  <div id="error" class="error hidden"></div>
+ 
+  <!-- CONFIDENCE BAR -->
+  <div class="conf-row">
+    <span class="conf-label">Confidence</span>
+    <div class="conf-track">
+      <div class="conf-fill" id="confFill"></div>
+    </div>
+    <span class="conf-val" id="confVal">0.0%</span>
+  </div>
+ 
+  <!-- STATUS LINE -->
+  <div class="status-row">
+    <div class="dot" id="dot"></div>
+    <span class="status-msg" id="statusMsg">initializing...</span>
+  </div>
+ 
+  <!-- WEBCAM + CANVAS -->
+  <div class="video-wrap">
+    <div class="corner tl"></div>
+    <div class="corner tr"></div>
+    <div class="corner bl"></div>
+    <div class="corner br"></div>
+ 
+    <video id="video" autoplay playsinline></video>
+    <canvas id="canvas"></canvas>
+ 
+    <button class="overlay-btn" id="overlayBtn">
+      <img id="overlayImg" src="assets/state-1.png" data-state="1" alt="hand sign" />
+    </button>
+  </div>
+ 
+  <!-- RESET BUTTON -->
+  <div class="controls">
+    <button class="reset-btn" id="resetBtn">↺ &nbsp; Reset Clones</button>
+  </div>
+ 
+  <!-- FOOTER -->
+  <footer>
+    <span>NARUTOsidequest</span>
+    <span>MediaPipe + TensorFlow.js</span>
+    <span>Chrome · Webcam required</span>
+  </footer>
+ 
+  <!-- CDN Dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/holistic/holistic.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation/selfie_segmentation.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

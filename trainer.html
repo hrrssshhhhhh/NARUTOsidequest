@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NARUTOsidequest — Gesture Trainer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="trainer.css" />
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div>
+      <div class="brand-name">
+        <span class="n">NARUTO</span><span class="s">sidequest</span>
+      </div>
+      <div class="brand-sub">Gesture Trainer · Record → Train → Export</div>
+    </div>
+    <a class="nav-link" href="index.html">← Main App</a>
+  </div>
+
+  <!-- STEP INDICATORS -->
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-label">Record samples</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-label">Train model</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-label">Test & export</div></div>
+  </div>
+
+  <!-- WEBCAM PREVIEW -->
+  <div class="video-wrap">
+    <video id="video" autoplay playsinline></video>
+    <canvas id="canvas"></canvas>
+    <div class="rec-badge" id="recBadge">● REC</div>
+  </div>
+
+  <!-- SECTION 1: DATA COLLECTION -->
+  <div class="section">
+    <div class="section-title">Step 1 — Collect Samples</div>
+    <div class="rec-row">
+      <button class="rec-btn" id="btnClone">
+        Record Clone Sign
+        <span class="key-pill">1</span>
+      </button>
+      <button class="rec-btn" id="btnOther">
+        Record Other Poses
+        <span class="key-pill">2</span>
+      </button>
+    </div>
+    <div class="counts">
+      Clone sign: <strong id="countClone">0</strong>
+      &nbsp;·&nbsp;
+      Other: <strong id="countOther">0</strong>
+      &nbsp;·&nbsp;
+      <span class="tip">aim for 100+ each</span>
+    </div>
+  </div>
+
+  <!-- SECTION 2: TRAIN & TEST -->
+  <div class="section">
+    <div class="section-title">Step 2 — Train & Test Live</div>
+    <div class="conf-row">
+      <div class="conf-track">
+        <div class="conf-fill" id="confFill"></div>
+      </div>
+      <span class="conf-label" id="confLabel">0%</span>
+    </div>
+    <button class="train-btn" id="btnTrain">Train Model</button>
+    <p class="train-status" id="trainStatus">Collect samples above, then train.</p>
+  </div>
+
+  <!-- SECTION 3: EXPORT -->
+  <div class="section">
+    <div class="section-title">Step 3 — Data & Model</div>
+    <div class="util-row">
+      <button class="util-btn" id="btnExport">Export Data (.json)</button>
+      <button class="util-btn" id="btnImport">Import Data</button>
+      <button class="util-btn" id="btnSave">Save Model</button>
+      <button class="util-btn danger" id="btnClear">Clear All</button>
+    </div>
+    <input type="file" id="importInput" accept=".json" hidden />
+  </div>
+
+  <!-- CDN Dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/holistic/holistic.js"></script>
+  <script src="trainer.js"></script>
+
+</body>
+</html>

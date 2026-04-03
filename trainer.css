@@ -1,0 +1,335 @@
+/* =====================================================
+   NARUTOsidequest — trainer.css
+   Trainer page styles
+   Theme: light off-white + orange accent
+   ===================================================== */
+
+/* --- CSS Variables --- */
+:root {
+    --bg:          #f5f3ef;
+    --surface:     #ffffff;
+    --border:      #e0ddd8;
+    --orange:      #ff6b1a;
+    --orange-dim:  #b84a0e;
+    --text:        #111111;
+    --muted:       #888888;
+    --green:       #1fa063;
+    --red:         #e03030;
+    --blue:        #1e50d4;
+  }
+  
+  /* --- Reset --- */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* --- Base --- */
+  body {
+    font-family: 'Share Tech Mono', monospace;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 1rem 3rem;
+  }
+  
+  /* =====================================================
+     TOP BAR
+     ===================================================== */
+  .topbar {
+    width: 100%;
+    max-width: 720px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 0 0.9rem;
+    border-bottom: 2px solid var(--text);
+    margin-bottom: 1.3rem;
+  }
+  
+  .brand-name {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 1.55rem;
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
+  
+  .brand-name .n { color: var(--orange); }
+  .brand-name .s { color: var(--text); }
+  
+  .brand-sub {
+    font-size: 0.56rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 3px;
+  }
+  
+  .nav-link {
+    font-size: 0.62rem;
+    color: var(--muted);
+    text-decoration: none;
+    border: 1px solid var(--border);
+    padding: 7px 14px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.2s;
+  }
+  
+  .nav-link:hover {
+    border-color: var(--orange);
+    color: var(--orange);
+  }
+  
+  /* =====================================================
+     STEP INDICATORS
+     ===================================================== */
+  .steps {
+    width: 100%;
+    max-width: 720px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-bottom: 1.2rem;
+  }
+  
+  .step {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .step-num {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--orange);
+    line-height: 1;
+  }
+  
+  .step-label {
+    font-size: 0.58rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text);
+  }
+  
+  /* =====================================================
+     VIDEO / CANVAS
+     ===================================================== */
+  .video-wrap {
+    width: 100%;
+    max-width: 720px;
+    position: relative;
+    background: #111;
+    margin-bottom: 1rem;
+    overflow: hidden;
+  }
+  
+  video { display: none; }
+  
+  canvas {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* Recording badge (top-left of video) */
+  .rec-badge {
+    display: none;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: var(--red);
+    color: #fff;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+  }
+  
+  .rec-badge.active {
+    display: block;
+    animation: pulse 0.85s ease infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.35; }
+  }
+  
+  /* =====================================================
+     SECTIONS
+     ===================================================== */
+  .section {
+    width: 100%;
+    max-width: 720px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 1.2rem;
+    margin-bottom: 8px;
+  }
+  
+  .section-title {
+    font-size: 0.56rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    margin-bottom: 1rem;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+  
+  /* =====================================================
+     RECORD BUTTONS
+     ===================================================== */
+  .rec-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .rec-btn {
+    padding: 12px 10px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    cursor: pointer;
+    text-align: left;
+    position: relative;
+    transition: all 0.15s;
+  }
+  
+  .rec-btn:hover { border-color: var(--text); }
+  
+  .rec-btn.active {
+    border-color: var(--red);
+    background: #fff5f5;
+  }
+  
+  /* Keyboard shortcut pill */
+  .key-pill {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: var(--border);
+    padding: 2px 7px;
+    font-size: 0.58rem;
+    font-family: monospace;
+    color: var(--muted);
+  }
+  
+  /* Sample counts row */
+  .counts {
+    font-size: 0.68rem;
+    color: var(--muted);
+  }
+  
+  .counts strong { color: var(--text); }
+  
+  .tip { color: var(--muted); font-size: 0.62rem; }
+  
+  /* =====================================================
+     CONFIDENCE BAR (live after training)
+     ===================================================== */
+  .conf-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .conf-track {
+    flex: 1;
+    height: 5px;
+    background: var(--border);
+    overflow: hidden;
+  }
+  
+  .conf-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--orange);
+    transition: width 0.08s linear;
+  }
+  
+  .conf-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    min-width: 40px;
+    text-align: right;
+    color: var(--orange);
+  }
+  
+  /* =====================================================
+     TRAIN BUTTON
+     ===================================================== */
+  .train-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background: var(--blue);
+    color: #fff;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    transition: background 0.15s;
+    margin-bottom: 10px;
+  }
+  
+  .train-btn:hover:not(:disabled) { background: #1640b0; }
+  
+  .train-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  
+  .train-status {
+    font-size: 0.65rem;
+    color: var(--muted);
+    min-height: 1.1rem;
+  }
+  
+  /* =====================================================
+     UTILITY BUTTONS (Export / Import / Save / Clear)
+     ===================================================== */
+  .util-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  
+  .util-btn {
+    padding: 6px 12px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.62rem;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  
+  .util-btn:hover {
+    border-color: var(--text);
+    color: var(--text);
+  }
+  
+  .util-btn.danger:hover {
+    border-color: var(--red);
+    color: var(--red);
+  }
