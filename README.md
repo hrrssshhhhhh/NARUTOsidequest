@@ -176,19 +176,3 @@ function predictGesture(rightLm, leftLm, threshold = 0.99999)
 ```js
 cloneSound.volume = 0.8; // 0.0 to 1.0
 ```
-
----
-
-## Credits
-
-Original concept by [nasha-wanich](https://github.com/nasha-wanich/naruto-shadow-clone-jutsu).
-
-This version (NARUTOsidequest) adds:
-- Separated file structure (HTML / JS / CSS)
-- Custom dark + orange UI with NARUTOsidequest branding
-- Status dot system (initializing → ready → triggered)
-- Reset button with waitingForReset guard
-- Sound effect on gesture trigger
-- Memory leak fix (`tf.tidy()` + reused offscreen canvas)
-- Confidence bar with live updates
-- Orange hand skeleton joints
